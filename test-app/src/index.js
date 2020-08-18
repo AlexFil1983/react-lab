@@ -1,13 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { BrowserRouter as Router, Route } from 'react-router-dom'
 import './index.css';
 import App from './App';
+import LogggedIn from './LoggedIn';
 import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+  <Router>
+   <Route exact path='/' component={ App } />
+   <Route path='/login' component={ LogggedIn } />
+  </Router>,
   document.getElementById('root')
 );
 
