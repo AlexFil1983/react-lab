@@ -2,6 +2,10 @@ import React, { Component } from 'react'
 import queryString from 'query-string'
 import Header from './Header'
 import SearchForm from './SearchForm'
+import TypeButtons from './TypeButtons'
+import ArtistList from './ArtistList'
+import PlayList from './Playlist'
+import AlbumList from './AlbumList'
 
 export default class LoggedIn extends Component {
 constructor() {
@@ -32,6 +36,10 @@ constructor() {
            <p>Hello, {this.state.serverData ? this.state.serverData.username : null}!</p>
            <Header link={this.state.serverData ? this.state.serverData.external_urls : null} />
            <SearchForm token={this.state.token} />
+           <ArtistList />
+           <TrackList />
+           <PlayList />
+           <AlbumList />
            </div>
         )
     }

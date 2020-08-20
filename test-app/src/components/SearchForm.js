@@ -9,9 +9,9 @@ export default function SearchForm(props) {
     return (
         <div>
             <SearchField token={props.token} />
-            {/* <TypeButtons />
+            <TypeButtons />
             <LimitButtons />
-            <SearchButton /> */}
+            <SearchButton />
         </div>
     )
 }

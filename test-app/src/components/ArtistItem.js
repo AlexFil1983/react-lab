@@ -3,12 +3,12 @@ import PropTypes from 'prop-types'
 
 export default function ArtistItem() {
     return (
-        <div>
-<p>Name</p>            
-<p>Spotify link</p>            
-<p>Genres: </p>            
-<p>Image</p>            
-        </div>
+<div>
+    <p>Name</p>            
+    <p>Spotify link</p>            
+    <p>Genres: </p>            
+    <p>Image</p>            
+</div>
     )
 }
 
