@@ -17,7 +17,7 @@ export default function TrackItem() {
 }
 
 
-TrackItem.PropTypes = {
+TrackItem.propTypes = {
     name: PropTypes.string,
     spotify_link: PropTypes.string,
     duration: PropTypes.number,

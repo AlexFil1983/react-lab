@@ -4,11 +4,10 @@ import TypeButtons from './TypeButtons'
 import LimitButtons from './LimitButtons'
 import SearchButton from './SearchButton'
 
-export default function SearchForm(props) {
-    console.log('searchForm token', props.token)
+export default function SearchForm() {
     return (
         <div>
-            <SearchField token={props.token} />
+            <SearchField />
             <TypeButtons />
             <LimitButtons />
             <SearchButton />

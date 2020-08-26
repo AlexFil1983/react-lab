@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
 import './css/SearchField.css'
+import {connect} from 'react-redux'
 
-export default class SearchField extends Component {
+
+class SearchField extends Component {
     constructor() {
         super()
         this.state = {
@@ -11,7 +13,7 @@ export default class SearchField extends Component {
 
 
 onSubmitHandler = () => {
-   fetch(`https://api.spotify.com/v1/search?q=${this.state.input}`, {
+   fetch(`https://api.spotify.com/v1/search?q=${this.state.input}&type=artist,playlist`, {
     headers: {
         'Authorization': 'Bearer ' + this.props.token
     }
@@ -27,3 +29,11 @@ onSubmitHandler = () => {
         )
     }
 }
+
+function mapStateToProps(state) {
+    return {
+        token: state.token,
+    }
+    }
+
+export default connect(mapStateToProps)(SearchField)

@@ -6,36 +6,40 @@ import TypeButtons from './TypeButtons'
 import ArtistList from './ArtistList'
 import PlayList from './Playlist'
 import AlbumList from './AlbumList'
+import TrackList from './Tracklist'
+import {connect} from 'react-redux'
+import {addToken, addUserData} from '../redux/actions/actions'
 
-export default class LoggedIn extends Component {
+class LoggedIn extends Component {
 constructor() {
     super()
-    this.state = {
-        serverData: null,
-        token: "",
-        }
+    // this.state = {
+    //     userData: null,
+    //     token: "",
+    //     }
 }
 
     componentDidMount() {
-   this.setState({token: queryString.parse(window.location.hash).access_token});
-    fetch('https://api.spotify.com/v1/me', {
+        this.props.addToken(queryString.parse(window.location.hash).access_token);
+
+        fetch('https://api.spotify.com/v1/me', {
         headers: {
             'Authorization': 'Bearer ' + queryString.parse(window.location.hash).access_token
         }
     }).then((response) => response.json())
     .then(data => {
-        this.setState({serverData: {username: data.display_name, ...data}});
-        console.log(this.state.serverData)
+        this.props.addUserData(data)
+      
     })
-    
 }
 
     render() {
+      
         return (
             <div>
-           <p>Hello, {this.state.serverData ? this.state.serverData.username : null}!</p>
-           <Header link={this.state.serverData ? this.state.serverData.external_urls : null} />
-           <SearchForm token={this.state.token} />
+            <p>Hello, {this.props.userData ? this.props.userData.display_name : null}!</p>
+           <Header link={this.props.userData ? this.props.userData.external_urls.spotify : null} />
+           <SearchForm token={this.props.token} />
            <ArtistList />
            <TrackList />
            <PlayList />
@@ -44,3 +48,20 @@ constructor() {
         )
     }
 }
+
+function mapStateToProps(state) {
+return {
+    token: state.token,
+    userData: state.userData,
+    
+}
+}
+
+function mapDispatchToProps(dispatch) {
+return {
+    addToken: (token) => dispatch(addToken(token)),
+    addUserData: (userData) => dispatch(addUserData(userData))
+}
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(LoggedIn)
