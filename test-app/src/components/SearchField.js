@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import './css/SearchField.css'
 import {connect} from 'react-redux'
-
+import {addSearchInput} from '../redux/actions/actions'
+import SearchButton from './SearchButton'
 
 class SearchField extends Component {
     constructor() {
@@ -23,8 +24,11 @@ onSubmitHandler = () => {
     render() {
         return (
             <div className="search-field">
-                <input type="text" value={this.state.input} onChange={(event) => this.setState({input: event.target.value})}/>  
-                <button type="submit" onClick={ this.onSubmitHandler }>Submit</button>
+                <input type="text" value={this.state.searchInput} onChange={(event) => {
+                    this.props.addInput(event.target.value);
+                }}/>  
+                <SearchButton search={this.props.search}/>
+           
             </div>
         )
     }
@@ -33,7 +37,14 @@ onSubmitHandler = () => {
 function mapStateToProps(state) {
     return {
         token: state.token,
+        searchInput: state.searchInput,
     }
     }
 
-export default connect(mapStateToProps)(SearchField)
+    function mapDispatchToProps(dispatch) {
+        return {
+            addInput: (input) => dispatch(addSearchInput(input)),
+                }
+        }
+
+export default connect(mapStateToProps, mapDispatchToProps)(SearchField)

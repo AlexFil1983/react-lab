@@ -1,16 +1,18 @@
 import React from 'react'
-import SearchField from './SearchField'
+import SearchField from './SearchField2'
 import TypeButtons from './TypeButtons'
 import LimitButtons from './LimitButtons'
-import SearchButton from './SearchButton'
 
-export default function SearchForm() {
+export default function SearchForm(props) {
     return (
         <div>
-            <SearchField />
+            <div>
+            <SearchField search={props.search} />
+            </div>
+          
             <TypeButtons />
             <LimitButtons />
-            <SearchButton />
+           
         </div>
     )
 }

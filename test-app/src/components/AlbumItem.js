@@ -1,14 +1,19 @@
 import React from 'react'
+import './css/AlbumItem.css'
+import Spinner from './Spinner'
 
-export default function AlbumItem() {
-    return (
-        <div>
-            <p>Name</p>
-            <p>Spotify link</p>
-            <p>Image</p>
-            <p>Release date</p>
-            <p>Total tracks</p>
-            <p>List of artists</p>
-        </div>
-    )
+export default function AlbumItem({name, link, image, date, total_tracks, list_of_artists, isLoading}) {
+    
+return (
+    <div className="album-item">
+        <h4>{name}</h4>
+        <img width="300" heigh="200" src={image} />
+        <p>Release date: {date}</p>
+        <p>Total tracks: {total_tracks}</p>
+        <p>{list_of_artists}</p>
+        <a className="album-link" href={link}>See on Spotify</a>
+
+    </div>
+)
+   
 }

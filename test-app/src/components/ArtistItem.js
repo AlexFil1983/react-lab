@@ -1,13 +1,14 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import './css/ArtistItem.css'
 
-export default function ArtistItem() {
+export default function ArtistItem(props) {
     return (
-<div>
-    <p>Name</p>            
-    <p>Spotify link</p>            
-    <p>Genres: </p>            
-    <p>Image</p>            
+<div className="artist-item">
+    <h4>{props.name}</h4>            
+    <img src={props.image} width="300" height="300" alt={props.name} />  
+    <p>{props.genres ? "Genres: " + props.genres : null}</p>            
+    <a className="artist-link" href={props.link}>See on Spotify</a> 
 </div>
     )
 }

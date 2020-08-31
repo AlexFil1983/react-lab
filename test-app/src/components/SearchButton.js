@@ -1,9 +1,9 @@
 import React from 'react'
 
-export default function SearchButton() {
+export default function SearchButton(props) {
     return (
         <div>
-            <button>Search</button>
+            <button onClick={props.search}>Search</button>
         </div>
     )
 }

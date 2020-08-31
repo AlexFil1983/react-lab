@@ -1,17 +1,17 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import './css/Track-item.css'
 
-export default function TrackItem() {
+
+export default function TrackItem({name, link, duration, popularity, album_name, album_link, artist_name, artist_link, image}) {
     return (
-        <div>
-           <p>Name</p> 
-           <p>Spotify link</p> 
-           <p>Duration</p> 
-           <p>Popularity</p> 
-           <p>Album name</p> 
-           <p>Album spotify link</p> 
-           <p>Artist name</p> 
-           <p>Artist spotify link</p> 
+        <div className="track-item">
+           <h4>{name}</h4>
+           <a href={link}><img src={image} alt={name} /></a>
+           <a href={artist_link}>Artist: {artist_name}</a> 
+           <p>Duration: {duration}</p> 
+           <p>Popularity: {popularity}</p> 
+           <a href={album_link}>Album: {album_name}</a> 
         </div>
     )
 }
