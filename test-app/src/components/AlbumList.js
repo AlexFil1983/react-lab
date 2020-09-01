@@ -5,8 +5,9 @@ import './css/AlbumList.css'
 import Spinner from './Spinner'
 
 function AlbumList(props) {
+console.log(props)
 const result = []
-const list_of_artists = props.albums_data !== null ? props.albums_data.albums.items.map(item => item.artists.map(artist => result.push(artist.name))) : null
+const list_of_artists = props.albums_data ? props.albums_data.albums.items.map(item => item.artists.map(artist => result.push(artist.name))) : null
 
 const albumItems = props.albums_data ? props.albums_data.albums.items.map(item => {
     let result = []

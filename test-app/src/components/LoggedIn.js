@@ -24,20 +24,12 @@ class LoggedIn extends Component {
 }
 
 render() {
-function searchUserInput(searchInput) {
-    this.props.saveTotalQuery(userSearchQuery(searchInput, this.props.types));
-    for (let type in this.props.types) {
-if (this.props.types[type]) {
-    this.props.addSearchData(searchInput, type, this.props.token)
-}
-    }
-    }
         return (
             <div>
             <p>Hello, {this.props.userData ? this.props.userData.display_name : null}!</p>
            <Header link={this.props.userData ? this.props.userData.external_urls.spotify : null} />
-           <SearchForm search={searchUserInput.bind(this)}/>
-           <p>Query: {userSearchQuery(this.props.searchInput, this.props.types)}</p>
+           <SearchForm />
+           <p>Query: {userSearchQuery(this.props.searchInput, this.props.types, this.props.limit)}</p>
            <Tabs />           
            </div>
         )
@@ -59,6 +51,7 @@ function mapStateToProps(state) {
     tracks_data: state.tracks.tracks_data,
     isLoading: state.albums.isLoading,
     totalQuery: state.initialReducer.totalQuery,
+    limit: state.initialReducer.limit,
 }
 }
 

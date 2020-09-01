@@ -1,50 +1,61 @@
-import React, { Component } from 'react'
-import './css/SearchField.css'
+import React from 'react'
+import { Field, reduxForm } from 'redux-form'
+import Button from '@material-ui/core/Button';
 import {connect} from 'react-redux'
 import {addSearchInput} from '../redux/actions/actions'
-import SearchButton from './SearchButton'
+import { userSearchQuery } from './helpers/endpoints'
+import { saveTotalQuery, addSearchData } from '../redux/actions/actions'
 
-class SearchField extends Component {
-    constructor() {
-        super()
-        this.state = {
-            input: '',
-                }
+class SearchField extends React.Component {
+ renderInput({input}) {
+
+return (
+<input {...input} />
+)
+}
+
+searchUserInput = (searchInput) => {
+   
+    this.props.saveTotalQuery(userSearchQuery(searchInput, this.props.types, this.props.limit));
+    for (let type in this.props.types) {
+if (this.props.types[type]) {
+    this.props.addSearchData(searchInput, type, this.props.token, this.props.limit)
+}
     }
+}
 
-
-onSubmitHandler = () => {
-   fetch(`https://api.spotify.com/v1/search?q=${this.state.input}&type=artist,playlist`, {
-    headers: {
-        'Authorization': 'Bearer ' + this.props.token
-    }
-}).then((response) => response.json()).then(response => console.log(response))
+onSubmit = ({searchInput}) => {
+this.searchUserInput(searchInput)
 }
 
     render() {
         return (
-            <div className="search-field">
-                <input type="text" value={this.state.searchInput} onChange={(event) => {
-                    this.props.addInput(event.target.value);
-                }}/>  
-                <SearchButton search={this.props.search}/>
-           
-            </div>
-        )
+        <form onSubmit={this.props.handleSubmit(this.onSubmit)}>
+            <Field name="searchInput" component={this.renderInput} label="Search" onChange={(event) => this.props.addInput(event.target.value)} />
+            <Button type="submit" variant="contained" color="primary">Search</Button>
+        </form>
+            )
     }
+    
 }
 
 function mapStateToProps(state) {
     return {
-        token: state.token,
-        searchInput: state.searchInput,
-    }
+    types: state.initialReducer.types,
+    token: state.initialReducer.token,
+    limit: state.initialReducer.limit,
+   }
+}
+
+function mapDispatchToProps(dispatch) {
+    return {
+        addInput: (input) => dispatch(addSearchInput(input)),
+        saveTotalQuery: (query) => dispatch(saveTotalQuery(query)),
+        addSearchData: (searchInput, type, token, limit) => dispatch(addSearchData(searchInput, type, token, limit)),
+            }
     }
 
-    function mapDispatchToProps(dispatch) {
-        return {
-            addInput: (input) => dispatch(addSearchInput(input)),
-                }
-        }
+SearchField = reduxForm({form: 'inputSearch'})(SearchField)
+SearchField = connect(mapStateToProps, mapDispatchToProps)(SearchField)
 
-export default connect(mapStateToProps, mapDispatchToProps)(SearchField)
+export default  SearchField

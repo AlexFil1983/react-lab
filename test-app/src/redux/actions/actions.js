@@ -31,11 +31,11 @@ export function addTypes(types) {
     }
 }
 
-export function addSearchData(searchInput, type, token) {
-let searchType;
-let successType;
-let startType;
-let searchFailureType;
+export function addSearchData(searchInput, type, token, limit) {
+let searchType = null;
+let successType = null;
+let startType = null;
+let searchFailureType = null;
 
 if (type === 'album') {
 searchType = consts.ADD_ALBUMS_DATA
@@ -67,9 +67,10 @@ if (type === 'track') {
             }  
 
 return (dispatch) => {
+    console.log(startType)
     dispatch({type: startType})
 
-    fetch(userSearchEndpoint(searchInput, type, token), {
+    fetch(userSearchEndpoint(searchInput, type, limit), {
                 headers: {
    'Authorization': 'Bearer ' + token
 }})

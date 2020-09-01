@@ -2,6 +2,7 @@ import {ADD_TOKEN, ADD_USER_DATA, ADD_SEARCH_INPUT, ADD_TYPES, SAVE_TOTAL_QUERY}
 
 const initialState = {
     token: null,
+    limit: 20,
     userData: null,
     searchInput: '',
     totalQuery: '',
