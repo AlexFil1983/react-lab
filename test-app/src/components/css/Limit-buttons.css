@@ -1,0 +1,14 @@
+.limit-buttons {
+    margin-bottom: 10px;
+    
+}
+
+button.MuiButtonBase-root.MuiButton-root.MuiButton-outlined.button.MuiButton-outlinedPrimary {
+    margin: 5px;
+}
+
+button.MuiButtonBase-root.MuiToggleButton-root.MuiToggleButtonGroup-grouped.MuiToggleButtonGroup-groupedHorizontal {
+    margin-bottom: 10px;
+    width: 50px;
+    height: 29px;
+}

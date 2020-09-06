@@ -1,0 +1,7 @@
+.album-items {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center ;
+    flex-basis: 80%;
+
+}
