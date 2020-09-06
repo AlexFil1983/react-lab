@@ -1,10 +1,9 @@
-import {ADD_TOKEN, ADD_USER_DATA, ADD_SEARCH_INPUT, ADD_TYPES, SAVE_TOTAL_QUERY} from '../actions/constants'
+import {ADD_TOKEN, ADD_USER_DATA, ADD_TYPES, SUBMIT_LIMIT} from '../actions/constants'
 
 const initialState = {
     token: null,
     limit: 20,
     userData: null,
-    searchInput: '',
     totalQuery: '',
     types: {
     album: true,
@@ -30,24 +29,18 @@ export default function initialReducer(state = initialState, action) {
             userData: action.payload
         }
 
-        case ADD_SEARCH_INPUT:
-        return {
-            ...state,
-            searchInput: action.payload
-        }
-
         case ADD_TYPES:
             return {
                 ...state,
                 types: action.payload
             }
         
-        case SAVE_TOTAL_QUERY: {
+        case SUBMIT_LIMIT: {
             return {
                 ...state,
-                totalQuery: action.payload
+                limit: action.payload
             }
-        }            
+        } 
 
         default:
         return state

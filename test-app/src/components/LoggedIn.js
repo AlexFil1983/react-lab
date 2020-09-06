@@ -3,9 +3,10 @@ import queryString from 'query-string'
 import Header from './Header'
 import SearchForm from './SearchForm'
 import {connect} from 'react-redux'
-import {addToken, addUserData, addSearchData, saveTotalQuery} from '../redux/actions/actions'
+import {addToken, addUserData, addSearchData} from '../redux/actions/actions'
 import { userDataEndpoint, userSearchQuery } from '../../src/components/helpers/endpoints'
 import Tabs from './Tabs'
+import { formValueSelector } from 'redux-form';
 
 class LoggedIn extends Component {
  
@@ -39,12 +40,14 @@ render() {
 
 
 function mapStateToProps(state) {
-    
+ const searchField = formValueSelector('searchField')
+ const inputValue = searchField(state, 'searchInput')
+
     return {
     token: state.initialReducer.token,
     userData: state.initialReducer.userData,
     types: state.initialReducer.types,
-    searchInput: state.initialReducer.searchInput,
+    searchInput: inputValue,
     albums_data: state.albums.albums_data,
     artists_data: state.artists.artists_data,
     playlists_data: state.playlists.playlists_data,
@@ -60,7 +63,7 @@ return {
     addToken: (token) => dispatch(addToken(token)),
     addUserData: (userData) => dispatch(addUserData(userData)),
     addSearchData: (searchInput, type, token) => dispatch(addSearchData(searchInput, type, token)),
-    saveTotalQuery: (query) => dispatch(saveTotalQuery(query)),
+    // saveTotalQuery: (query) => dispatch(saveTotalQuery(query)),
 
 }
 }

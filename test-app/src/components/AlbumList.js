@@ -5,14 +5,13 @@ import './css/AlbumList.css'
 import Spinner from './Spinner'
 
 function AlbumList(props) {
-console.log(props)
-const result = []
-const list_of_artists = props.albums_data ? props.albums_data.albums.items.map(item => item.artists.map(artist => result.push(artist.name))) : null
+// const result = []
+// const list_of_artists = props.albums_data ? props.albums_data.albums.items.map(item => item.artists.map(artist => result.push(artist.name))) : null
 
 const albumItems = props.albums_data ? props.albums_data.albums.items.map(item => {
-    let result = []
-    item.artists.map(artist => result.push(artist.name))
-    return (<AlbumItem key={Math.random()} name={item.name} image={item.images[0].url} link={item.external_urls.spotify} date={item.release_date} total_tracks={item.total_tracks} list_of_artists={result.length > 0 ? result.join(', ') : null}  />)
+    let artists = []
+    item.artists.map(artist => artists.push(artist.name))
+    return (<AlbumItem key={Math.random()} name={item.name} image={item.images[0].url} link={item.external_urls.spotify} date={item.release_date} total_tracks={item.total_tracks} list_of_artists={artists.length > 0 ? artists.join(', ') : null}  />)
 }
 ) : null
 

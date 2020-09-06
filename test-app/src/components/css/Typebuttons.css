@@ -1,13 +1,9 @@
-.type-button {
-    margin: 10px;
-}
-
 button.MuiButtonBase-root.MuiButton-root.MuiButton-contained {
     margin: 5px;
 }
 
-button.MuiButtonBase-root.MuiButton-root.MuiButton-contained.border  {
-    margin: 10px;
-    border: 2px solid green;
-    outline-style: none;
-};
+.searchTypes {
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+

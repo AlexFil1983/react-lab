@@ -6,10 +6,7 @@ import LimitButtons from './LimitButtons'
 export default function SearchForm(props) {
     return (
         <div>
-            <div>
-            <SearchField />
-            </div>
-          
+            <SearchField form="searchField" />
             <TypeButtons />
             <LimitButtons />
            

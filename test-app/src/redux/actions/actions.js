@@ -1,6 +1,6 @@
 import * as consts from './constants'
 import { userSearchEndpoint } from '../../components/helpers/endpoints'
-import { userDataEndpoint } from '../../components/helpers/endpoints'
+
 
 export function addToken(token) {
     return {
@@ -16,12 +16,12 @@ export function addUserData(data) {
     }
 }
 
-export function addSearchInput(input) {
-    return {
-        type: consts.ADD_SEARCH_INPUT,
-        payload: input
-    }
-}
+// export function addSearchInput(input) {
+//     return {
+//         type: consts.ADD_SEARCH_INPUT,
+//         payload: input
+//     }
+// }
 
 
 export function addTypes(types) {
@@ -32,6 +32,7 @@ export function addTypes(types) {
 }
 
 export function addSearchData(searchInput, type, token, limit) {
+
 let searchType = null;
 let successType = null;
 let startType = null;
@@ -67,9 +68,8 @@ if (type === 'track') {
             }  
 
 return (dispatch) => {
-    console.log(startType)
-    dispatch({type: startType})
 
+    dispatch({type: startType})
     fetch(userSearchEndpoint(searchInput, type, limit), {
                 headers: {
    'Authorization': 'Bearer ' + token
@@ -88,86 +88,9 @@ return (dispatch) => {
 }
 }
 
-export function saveTotalQuery(query) {
+export function submitLimits(limit) {
     return {
-        type: consts.SAVE_TOTAL_QUERY,
-        payload: query,
+        type: consts.SUBMIT_LIMIT,
+        payload: limit
     }
 }
-
-
-
-
-  
-    // switch(type) {
-    //     case "albums": {
-    //         return (dispatch) => {
-    //             fetch(userDataEndpoint(searchInput, type), {
-    //                      headers: {
-    //             'Authorization': 'Bearer ' + token
-    //         }
-    //             }).then(respone => response.json())
-    //             .then(data => {
-    //                 dispatch({
-    //                     type: ADD_ALBUMS_DATA,
-    //                     payload: data,
-    //                     }) 
-    //             })
-    //         } 
-    //         // {
-    //         //     type: ADD_ALBUMS_DATA,
-    //         //     payload: data.albums
-    //         // }
-    //     }
-
-        // fetch(userSearchEndpoint(this.props), {
-        //     headers: {
-        //         'Authorization': 'Bearer ' + this.props.token
-        //     }
-        // }).then((response) => response.json())
-        // .then(data => {
-        //     for (let type in data) {
-        //         if (data[type]) {
-        //             this.props.addSearchData(data, type)
-        //         } 
-        //     }
-        //  })
-
-//         case "artists": {
-//             return {
-//                 type: ADD_ARTISTS_DATA,
-//                 payload: data.artists
-//             }
-//         }
-
-//         case "playlists": {
-//             return {
-//                 type: ADD_PLAYLISTS_DATA,
-//                 payload: data.playlists
-//             }
-//         }
-
-//         case "tracks": {
-//             return {
-//                 type: ADD_TRACKS_DATA,
-//                 payload: data.tracks
-//             }
-//         }
-//         default: return 
-//     }
-//   }
-
-
-//   export function searchUserInput() {
-//     fetch(userSearchEndpoint(this.props), {
-//         headers: {
-//             'Authorization': 'Bearer ' + this.props.token
-//         }
-//     }).then((response) => response.json())
-//     .then(data => {
-//         for (let type in data) {
-//             if (data[type]) {
-//                 this.props.addSearchData(data, type)
-//             } 
-//         }
-//      })

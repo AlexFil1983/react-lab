@@ -1,6 +1,5 @@
 import React from 'react'
 import './css/AlbumItem.css'
-import Spinner from './Spinner'
 
 export default function AlbumItem({name, link, image, date, total_tracks, list_of_artists, isLoading}) {
     
